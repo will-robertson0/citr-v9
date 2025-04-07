@@ -1,0 +1,8 @@
+components are self-encapsulating: 
+    a component can only modify its own state
+        not that of the child or parent component
+
+use context only for 'app-level state', such as the theme or the user who's logged in
+    using context any less sparingly makes debugging difficult:
+        data normally flows from parent component to child through props
+
