@@ -1,7 +1,12 @@
 import { useEffect, useState, useContext} from "react";
-import Pizza from "./Pizza";
-import Cart from './Cart';
-import { CartContext } from "./contexts";
+import { createLazyFileRoute } from "@tanstack/react-router";
+import Pizza from "../Pizza";
+import Cart from '../Cart';
+import { CartContext } from "../contexts";
+
+export const Route = createLazyFileRoute("/order")({
+    component: Order,
+});
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -9,7 +14,8 @@ const intl = new Intl.NumberFormat("en-US", {
 });
 
 // named function, unlike in Pizza.jsx. name shows up in stack trace
-export default function Order() {
+// removed "export default" from the line below after creating the Route function above
+function Order() {
   // these are hooks. they depend on being called in the same order every time,
   // so they cannot be called inside a conditional or loop.
   // here useState returns an array with the variable and a setter function.
