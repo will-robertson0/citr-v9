@@ -4,14 +4,11 @@
 import { useState, useEffect, useDebugValue } from "react";
 
 // a custom hook is just a function that calls other hooks:
-// naming our custom hook like useXXXXX helps the react linting understand 
+// naming our custom hook like useXXXXX helps the react linting understand
 // that it is a hook (all hooks have 'use' at the front of the name)
 export const usePizzaOfTheDay = () => {
   const [pizzaOfTheDay, setPizzaOfTheDay] = useState(null);
-  useDebugValue(
-    pizzaOfTheDay ? `${pizzaOfTheDay.id}`:
-    "loading...",
-  );
+  useDebugValue(pizzaOfTheDay ? `${pizzaOfTheDay.id}` : "loading...");
 
   useEffect(() => {
     async function fetchPizzaOfTheDay() {
