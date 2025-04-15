@@ -48,7 +48,11 @@ function PastOrdersRoute() {
                 <tbody>
                     {data.map((order) => (
                         <tr key={order.order_id}>
-                            <td>{order.order_id}</td>
+                            <td>
+                                <button onClick={() => setFocusedOrder(order.order_id)}>
+                                {order.order_id}
+                                </button>
+                            </td>
                             <td>{order.date}</td>
                             <td>{order.time}</td>
                         </tr>
