@@ -5,11 +5,22 @@ import getPastOrders from '../api/getPastOrders';
 import getPastOrder from "../api/getPastOrder";
 import Modal from "../Modal";
 import { priceConverter } from "../useCurrency";
+import ErrorBoundary from "../ErrorBoundary";
 
 
 export const Route = createLazyFileRoute("/past")({
-  component: PastOrdersRoute,
+  component: ErrorBoundaryWrappedPastOrderRoutes,
 });
+
+function ErrorBoundaryWrappedPastOrderRoutes() {
+    // error boundary has to be on the same level as PastOrdersRoute() in order to catch an error in it.
+    // this is why we can't just wrap the html in the return statement below in an error boundary tag.
+    return (
+        <ErrorBoundary>
+            <PastOrdersRoute />
+        </ErrorBoundary>
+    );
+}
 
 function PastOrdersRoute() {
     const [page, setPage] = useState(1); // starting on page 1
